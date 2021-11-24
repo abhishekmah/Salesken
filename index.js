@@ -39,7 +39,12 @@ let next=document.getElementById("next");
 let songs=["music/Avicii.mp3","music/Closer.mp3","music/Happier.mp3","music/I'm an Albatraoz.mp3","music/Let Me Love You.mp3","music/Love Me Like You Do.mp3","music/Right Now.mp3","music/Rockstar.mp3","music/Smack That.mp3","music/Swalla.mp3","music/The Spectre.mp3"];
 var j=0;
 
+const name=document.getElementById("songName");
+
 function song(j){
+    let songName=songs[j].split("/");
+    name.innerHTML=songName[songName.length-1];
+    
     audio.src=songs[j];
     audio.load();
 }
@@ -90,4 +95,6 @@ function unmute1(){
     audio.muted=false;
 }
 
-const name=document.getElementById
+
+
+
