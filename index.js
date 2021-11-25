@@ -15,19 +15,19 @@ const random = ()=>{
 const random1 = ()=>{
      return index[Math.floor(Math.random()*(index.length-1))];
 }
+let heightArray=[];
+let indexArray=[];
 
-let heightLength=[];
-let yLength=[]
-
+// For the first time printing White boxes.
 function randomTrack(){
-    cxt.clearRect(0,0,1200,300);
+    cxt.clearRect(0,0,1400,300);
     let x1=5
     for(let i=0;i<145;i++){
         cxt.fillStyle="white"
         let ran = random();
-        heightLength.push(ran)
+        heightArray.push(ran)
         let ran1 = random1();
-        yLength.push(ran1)
+        indexArray.push(ran1)
         cxt.fillRect(x1,ran1,1,ran)
         
         x1+=2;
@@ -35,7 +35,7 @@ function randomTrack(){
     }
     randomTrack()
     
-    // console.log(heightLength,yLength);
+    // console.log(heightArray,indexArray);
 
 cxt.fillStyle = "red";
 
@@ -64,6 +64,7 @@ function getCoordinates(e){
 }
 
 var timer1;
+var duration=0;
 function trackOnclick(x){
     var boxes = Math.ceil(x/9.6)-3;
     // console.log(boxes);
@@ -73,14 +74,14 @@ function trackOnclick(x){
     let x2=5;
     for(var i=0;i<145;i++){
         cxt.fillStyle="white"
-        cxt.fillRect(x1,yLength[i],1,heightLength[i]);
+        cxt.fillRect(x1,indexArray[i],1,heightArray[i]);
         
         x1+=2;
     }
 
     for(i=0; i<boxes; i++){
         cxt.fillStyle="red";
-        cxt.fillRect(x2,yLength[i],1,heightLength[i]);
+        cxt.fillRect(x2,indexArray[i],1,heightArray[i]);
         
         x2+=2;
     }
@@ -88,7 +89,7 @@ function trackOnclick(x){
 
     var z1=boxes;
     timer1=setInterval(()=>{
-        cxt.fillRect(x2,yLength[z1],1,heightLength[z1])
+        cxt.fillRect(x2,indexArray[z1],1,heightArray[z1])
            
             x2+=2;
             duration+=((audio.duration)/1200)*8300
@@ -96,8 +97,11 @@ function trackOnclick(x){
 
             if(z1==145){
                 z1=0;
+                z=0;
                 x2=5;
+                x=5;
                 duration=0;
+                audio.currentTime=0;
                 clearInterval(timer)
                 playback=true;
                 pause1()
@@ -114,7 +118,7 @@ let unmute=document.getElementById("unmute");
 let mute=document.getElementById("mute");
 let next=document.getElementById("next");
 
-let songs=["music/I'm an Albatraoz.mp3"];
+let songs=["music/agar.mp3"];
 var j=0;
 
 const name=document.getElementById("songName");
@@ -128,33 +132,32 @@ function song(j){
 }
 song(j);
 
-function next1(){
-    // maintaining a counter to loop through the songs.
-    randomTrack()
-    j++;
-    if(j==songs.length){
-        j=0;
-    }
-    song(j);
+// function next1(){
+//     // maintaining a counter to loop through the songs.
+//     randomTrack()
+//     j++;
+//     if(j==songs.length){
+//         j=0;
+//     }
+//     song(j);
     
-    // calling the play function so that next song automatically starts playing. 
-    play1();
-    trackOnclick(24);
-}
-
+//     // calling the play function so that next song automatically starts playing. 
+//     play1();
+//     trackOnclick(24);
+// }
 
 // Audio play and pause.
 
 let x=5;
 let z=0;
-var duration=0;
 var timer;
 let playback=false;
 let c=5;
 
 function timer2(){
+    cxt.fillStyle="red";
     timer=setInterval(()=>{
-        cxt.fillRect(x,yLength[z],1,heightLength[z])
+        cxt.fillRect(x,indexArray[z],1,heightArray[z])
            
             x+=2;
             duration+=((audio.duration)/1200)*8300
@@ -177,9 +180,13 @@ function play1(){
     play.style.display="none"
     pause.style.display="block"
 
+    console.log(audio.currentTime);
     // play the audio.
     audio.play()
 
+    // if(audio.currentTime===0){
+    //     randomTrack();
+    // }
     // For moving the bars according to the song.
     timer2();
 }
