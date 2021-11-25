@@ -48,20 +48,27 @@ function fillRect(c){
 }
 
 canvas.addEventListener("click", getCoordinates)
+
 function getCoordinates(e){
     const x = e.clientX-14;
     const y = e.clientY-27;
+    clearInterval(timer1);
+    audio.currentTime=(((x/10))/149)*audio.duration;
+    play.style.display="none"
+    pause.style.display="block"
+    audio.play()
 
     console.log("x:" + x + " "+ "y:" + y);
     
     trackOnclick(x);
 }
 
+var timer1;
 function trackOnclick(x){
     var boxes = Math.ceil(x/9.6)-3;
-    console.log(boxes);
-    cxt.clearRect(0,0,x,300);
-
+    // console.log(boxes);
+    cxt.clearRect(0,0,1400,300);
+    
     let x1=5;
     let x2=5;
     for(var i=0;i<145;i++){
@@ -79,22 +86,23 @@ function trackOnclick(x){
     }
     play1();
 
-    timer=setInterval(()=>{
+    var z1=boxes;
+    timer1=setInterval(()=>{
         cxt.fillRect(x2,yLength[z1],1,heightLength[z1])
            
-            x+=2;
+            x2+=2;
             duration+=((audio.duration)/1200)*8300
             console.log((audio.currentTime)*1000,duration,(audio.duration)*1000)
 
-            if(duration>=(audio.duration)*1000){
-                z=0;
-                x=5;
+            if(z1==145){
+                z1=0;
+                x2=5;
                 duration=0;
                 clearInterval(timer)
                 playback=true;
                 pause1()
             }
-            z++;
+            z1++;
         },((audio.duration)/1200)*8300)
 }
 
@@ -106,7 +114,7 @@ let unmute=document.getElementById("unmute");
 let mute=document.getElementById("mute");
 let next=document.getElementById("next");
 
-let songs=["music/Avicii.mp3","music/raatan.mp3","music/agar.mp3","music/Closer.mp3","music/Happier.mp3","music/I'm an Albatraoz.mp3","music/Let Me Love You.mp3","music/Love Me Like You Do.mp3","music/Right Now.mp3","music/Rockstar.mp3","music/Smack That.mp3","music/Swalla.mp3","music/The Spectre.mp3"];
+let songs=["music/I'm an Albatraoz.mp3"];
 var j=0;
 
 const name=document.getElementById("songName");
@@ -120,7 +128,6 @@ function song(j){
 }
 song(j);
 
-var duration=0;
 function next1(){
     // maintaining a counter to loop through the songs.
     randomTrack()
@@ -129,28 +136,30 @@ function next1(){
         j=0;
     }
     song(j);
+    
     // calling the play function so that next song automatically starts playing. 
     play1();
+    trackOnclick(24);
 }
 
 
 // Audio play and pause.
 
 let x=5;
-var timer;
 let z=0;
+var duration=0;
+var timer;
 let playback=false;
 let c=5;
 
-
-function timer(){
+function timer2(){
     timer=setInterval(()=>{
         cxt.fillRect(x,yLength[z],1,heightLength[z])
            
             x+=2;
             duration+=((audio.duration)/1200)*8300
             console.log((audio.currentTime)*1000,duration,(audio.duration)*1000)
-
+    
             if(duration>=(audio.duration)*1000){
                 z=0;
                 x=5;
@@ -163,14 +172,16 @@ function timer(){
         },((audio.duration)/1200)*8300)
 }
 
+
 function play1(){
     play.style.display="none"
     pause.style.display="block"
 
     // play the audio.
     audio.play()
-        // For moving the bars according to the song.
-    timer();
+
+    // For moving the bars according to the song.
+    timer2();
 }
 
 function pause1(){
@@ -182,6 +193,7 @@ function pause1(){
 
     // For stoping the movement of bars.
     clearInterval(timer);
+    clearInterval(timer1);
 }
 
 function mute1(){
