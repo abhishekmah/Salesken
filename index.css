@@ -1,4 +1,4 @@
-body{
+body {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK8saRIgGzlpyUCqHIxicN33PlB612sHHKZw&usqp=CAU');
     background-size: 100% 160%;
     backdrop-filter: blur(15px);
@@ -19,7 +19,6 @@ body{
     align-items: center;
     justify-content: space-between;
     /* border: 1px solid black; */
-    
 }
 
 .buttons > div {
@@ -70,12 +69,12 @@ body{
 }
 #myCanvas {
     width: 98%;
-    height: 85%;
+    height: 95%;
     /* border: 1px solid black; */
     align-items: center;
     margin-left: 7px;
     margin-top: 20px;
-    /* background-color: white; */
+    background-color: white;
 }
 #pause {
     display: none;
@@ -96,33 +95,175 @@ body{
     height: 30px;
 }
 
-@media (max-width: 1300px){
-    .buttons{
+@media (max-width: 1300px) {
+    .buttons {
         width: 30%;
         height: 70px;
     }
 }
-@media (max-width: 970px){
-    .buttons{
+@media (max-width: 970px) {
+    .buttons {
         width: 40%;
         height: 70px;
     }
 }
-@media (max-width: 700px){
-    .buttons{
+@media (max-width: 700px) {
+    .buttons {
         width: 55%;
         height: 70px;
     }
 }
-@media (max-width: 500px){
-    .buttons{
+@media (max-width: 500px) {
+    .buttons {
         width: 65%;
         height: 70px;
     }
 }
-@media (max-width: 300px){
-    .buttons{
+@media (max-width: 300px) {
+    .buttons {
         width: 85%;
         height: 70px;
     }
+}
+
+.div1 {
+    position: absolute;
+    top: 60px;
+    left: 130px;
+    width: 130px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: #12d024;
+}
+.div2 {
+    position: absolute;
+    top: 30px;
+    left: 330px;
+    width: 130px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: #25dd8e;
+}
+.div3 {
+    position: absolute;
+    top: 55px;
+    left: 950px;
+    width: 70px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: #1900b8;
+}
+.div4 {
+    position: absolute;
+    top: 45px;
+    left: 1030px;
+    z-index: 2;
+    width: 170px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: #926766;
+}
+.div5 {
+    position: absolute;
+    top: 15px;
+    left: 1060px;
+    width: 170px;
+    height: 27px;
+    border-radius: 5px;
+    background-color: #68a445;
+}
+.div1 > .vl {
+    border-left: 4px solid #12d025a9;
+    height: 80px;
+    width: 0.5px;
+    position: absolute;
+    left: 47%;
+    margin-left: -3px;
+    top: 25px;
+}
+.div2 > .vl {
+    border-left: 4px solid #25dd8da8;
+    height: 100px;
+    width: 0.5px;
+    position: absolute;
+    left: 47%;
+    margin-left: -3px;
+    top: 25px;
+}
+.div3 > .vl {
+    border-left: 4px solid #1900b89f;
+    height: 60px;
+    width: 0.5px;
+    position: absolute;
+    left: 47%;
+    margin-left: -3px;
+    top: 25px;
+}
+.div4 > .vl {
+    border-left: 4px solid #926766a6;
+    height: 80px;
+    width: 0.5px;
+    position: absolute;
+    left: 37%;
+    margin-left: -3px;
+    top: 25px;
+}
+.div5 > .vl {
+    border-left: 4px solid #68a445ad;
+    height: 100px;
+    width: 0.5px;
+    position: absolute;
+    left: 67%;
+    margin-left: -3px;
+    top: 25px;
+}
+.div1 > .dot {
+    position: absolute;
+    top: 90px;
+    left: 50px;
+    height: 20px;
+    width: 20px;
+    background-color: #18c029c2;
+    border-radius: 50%;
+    display: inline-block;
+}
+.div2 > .dot {
+    position: absolute;
+    top: 120px;
+    left: 50px;
+    height: 20px;
+    width: 20px;
+    background-color: #25dd8da8;
+    border-radius: 50%;
+    display: inline-block;
+}
+.div3 > .dot {
+    position: absolute;
+    top: 80px;
+    left: 23px;
+    height: 20px;
+    width: 20px;
+    background-color: #1900b8a1;
+    border-radius: 50%;
+    display: inline-block;
+}
+.div4 > .dot {
+    position: absolute;
+    top: 90px;
+    left: 50px;
+    height: 20px;
+    width: 20px;
+    background-color: #926766a9;
+    border-radius: 50%;
+    display: inline-block;
+}
+.div5 > .dot {
+    position: absolute;
+    top: 120px;
+    left: 102px;
+    height: 20px;
+    width: 20px;
+    background-color: #68a445a6;
+    border-radius: 50%;
+    display: inline-block;
 }

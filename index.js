@@ -18,13 +18,13 @@ const random1 = ()=>{
 let heightArray=[];
 let indexArray=[];
 
-// For the first time printing White boxes.
+// For the first time printing grey boxes.
 function randomTrack(){
     cxt.clearRect(0,0,1400,300);
     
     let x1=5
     for(let i=0;i<145;i++){
-        cxt.fillStyle="white"
+        cxt.fillStyle="grey"
         let ran = random();
         heightArray.push(ran)
         let ran1 = random1();
@@ -81,7 +81,7 @@ function trackOnclick(x){
     let x1=5;
     let x2=5;
     for(var i=0;i<145;i++){
-        cxt.fillStyle="white"
+        cxt.fillStyle="grey"
         cxt.fillRect(x1,indexArray[i],1,heightArray[i]);
         
         x1+=2;
@@ -164,7 +164,9 @@ let playback=false;
 let c=5;
 
 function timer2(){
-    z=0;
+    if(repeat===true){
+        z=0;
+    }
     cxt.fillStyle="red";
     timer=setInterval(()=>{
         // console.log(z)
@@ -195,8 +197,6 @@ function play1(){
     // play the audio.
     audio.play()
 
-    statusClick?timer:timer1;
-
     if(statusClick===false){
         timer2();
     }
@@ -204,7 +204,7 @@ function play1(){
         cxt.clearRect(0,0,1400,300);
         // console.log(indexArray)
         for(var i=0;i<145;i++){
-            cxt.fillStyle="white"
+            cxt.fillStyle="grey"
             cxt.fillRect(x3,indexArray[i],1,heightArray[i]);
             
             x3+=2;
@@ -248,7 +248,3 @@ function unmute1(){
     //unmuting the audio.
     audio.muted=false;
 }
-
-
-
-
