@@ -41,7 +41,6 @@ cxt.fillStyle = "red";
 
 // function to create a rectangle with different values.
 function fillRect(c){
-    
         var ran = random();
         var ran1 = random1();
         canvas.style.height=ran;
@@ -54,7 +53,49 @@ function getCoordinates(e){
     const y = e.clientY-27;
 
     console.log("x:" + x + " "+ "y:" + y);
-    // audio.currentvalue
+    
+    trackOnclick(x);
+}
+
+function trackOnclick(x){
+    var boxes = Math.ceil(x/9.6)-3;
+    console.log(boxes);
+    cxt.clearRect(0,0,x,300);
+
+    let x1=5;
+    let x2=5;
+    for(var i=0;i<145;i++){
+        cxt.fillStyle="white"
+        cxt.fillRect(x1,yLength[i],1,heightLength[i]);
+        
+        x1+=2;
+    }
+
+    for(i=0; i<boxes; i++){
+        cxt.fillStyle="red";
+        cxt.fillRect(x2,yLength[i],1,heightLength[i]);
+        
+        x2+=2;
+    }
+    play1();
+
+    timer=setInterval(()=>{
+        cxt.fillRect(x2,yLength[z1],1,heightLength[z1])
+           
+            x+=2;
+            duration+=((audio.duration)/1200)*8300
+            console.log((audio.currentTime)*1000,duration,(audio.duration)*1000)
+
+            if(duration>=(audio.duration)*1000){
+                z=0;
+                x=5;
+                duration=0;
+                clearInterval(timer)
+                playback=true;
+                pause1()
+            }
+            z++;
+        },((audio.duration)/1200)*8300)
 }
 
 //Getting the references of HTML elements we have introduced.
@@ -101,13 +142,8 @@ let z=0;
 let playback=false;
 let c=5;
 
-function play1(){
-    play.style.display="none"
-    pause.style.display="block"
 
-    // play the audio.
-    audio.play()
-        // For moving the bars according to the song.
+function timer(){
     timer=setInterval(()=>{
         cxt.fillRect(x,yLength[z],1,heightLength[z])
            
@@ -125,6 +161,16 @@ function play1(){
             }
             z++;
         },((audio.duration)/1200)*8300)
+}
+
+function play1(){
+    play.style.display="none"
+    pause.style.display="block"
+
+    // play the audio.
+    audio.play()
+        // For moving the bars according to the song.
+    timer();
 }
 
 function pause1(){
